@@ -10,3 +10,4 @@ services:
     working_dir: /terraform
     entrypoint: ash
     tty: true
+    
