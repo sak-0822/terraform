@@ -7,9 +7,20 @@ output "public_dns"{
     value = module.web_server.public_dns
 }
 
-module "describe_regions_for_ec2" {
-    source = "./iam_role"
-    name = "describe-describe-regions-for-ec2"
-    identifier = "ec2.amazonaws.com"
-    policy = data.aws_iam_policy_document.allow_describe_regions.json
+
+resource "aws_s3_bucket" "private" {
+    bucket = "private-pragmatic-terraform20220115"
+
+    versioning {
+        enabled = true
+    }
+
+    server_side_encryption_configuration{
+        rule{
+            apply_server_side_encryption_by_default{
+                sse_algorithm = "AES256"
+            }
+        }
+    }
 }
+
