@@ -37,6 +37,8 @@ resource "aws_s3_bucket" "public" {
 resource "aws_s3_bucket" "alb_log" {
     bucket = "alb-log-pragmatic-terraform20220115"
 
+    force_destroy = true
+
     lifecycle_rule {
         enabled = true
 
@@ -63,3 +65,4 @@ data "aws_iam_policy_document" "alb_log"{
         }
     }
 }
+
